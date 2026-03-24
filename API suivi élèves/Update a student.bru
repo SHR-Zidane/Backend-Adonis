@@ -1,0 +1,23 @@
+meta {
+  name: Update a student
+  type: http
+  seq: 2
+}
+
+put {
+  url: http://localhost:3333/students/5
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "name": "Snehan",
+    "firstname": "Gnanassorian"
+  }
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}
