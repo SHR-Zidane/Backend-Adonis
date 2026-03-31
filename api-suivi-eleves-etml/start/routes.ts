@@ -18,4 +18,4 @@ router.get('test', async () => {
 
 router.resource('students', StudentsController).apiOnly()
 router.resource('teachers', TeachersController).apiOnly()
-router.resource('class-groups', ClassGroupsController).apiOnly()
+router.resource('classGroups', ClassGroupsController).apiOnly()

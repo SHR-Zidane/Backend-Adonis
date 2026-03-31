@@ -4,27 +4,39 @@ import { classGroupValidator } from '#validators/class_group'
 
 export default class ClassGroupsController {
   async index({}: HttpContext) {
-    return ClassGroup.query().orderBy('name')
+    const classGroups = await ClassGroup.query()
+      .preload('teacher')
+      .orderBy('name', 'asc')
+
+    return classGroups
   }
 
   async store({ request, response }: HttpContext) {
-    const data = await request.validateUsing(classGroupValidator)
-    const classGroup = await ClassGroup.create(data)
+    const { name, teacherId } = await request.validateUsing(classGroupValidator)
+    const classGroup = await ClassGroup.create({ name, teacherId })
 
     return response.created(classGroup)
   }
 
   async show({ params }: HttpContext) {
-    return ClassGroup.findOrFail(params.id)
+    const classGroup = await ClassGroup.query()
+      .preload('teacher')
+      .where('id', params.id)
+      .firstOrFail()
+
+    return classGroup
   }
 
   async edit({}: HttpContext) {}
 
   async update({ params, request, response }: HttpContext) {
-    const data = await request.validateUsing(classGroupValidator)
+    const { name, teacherId } = await request.validateUsing(classGroupValidator)
     const classGroup = await ClassGroup.findOrFail(params.id)
 
-    classGroup.merge(data)
+    classGroup.merge({
+      name,
+      ...(teacherId !== undefined ? { teacherId } : {}),
+    })
     await classGroup.save()
 
     response.ok(`la classe ${classGroup.name} a bien ete modifiee`)

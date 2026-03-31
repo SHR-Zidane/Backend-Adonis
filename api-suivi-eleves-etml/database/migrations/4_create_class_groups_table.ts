@@ -8,6 +8,14 @@ export default class extends BaseSchema {
       table.increments('id')
       table.string('name').notNullable()
 
+      // Relation : 1 classe -> 1 enseignant (maître de classe)
+      table
+        .integer('teacher_id')
+        .unsigned()
+        .notNullable()
+        .references('id')
+        .inTable('teachers')
+
       table.timestamp('created_at')
       table.timestamp('updated_at')
     })
