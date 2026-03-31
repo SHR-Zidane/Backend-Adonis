@@ -1,0 +1,23 @@
+meta {
+  name: Add a new class group
+  type: http
+  seq: 14
+}
+
+post {
+  url: http://localhost:3333/class-groups
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "name": "A4",
+    "teacherId": 1
+  }
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

@@ -1,0 +1,24 @@
+meta {
+  name: Add a new teacher
+  type: http
+  seq: 9
+}
+
+post {
+  url: http://localhost:3333/teachers
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "name": "Dupont",
+    "firstname": "Claire",
+    "email": "claire.dupont@example.com"
+  }
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}
