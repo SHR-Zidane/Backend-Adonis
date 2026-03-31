@@ -6,8 +6,16 @@
 | The routes file is used for defining the HTTP routes.
 |
 */
-import StudentsController from '#controllers/students_controller'
 import router from '@adonisjs/core/services/router'
 
-router.get('test', async () => { return 'API is working ! '})
+const StudentsController = () => import('#controllers/students_controller')
+const TeachersController = () => import('#controllers/teachers_controller')
+const ClassGroupsController = () => import('#controllers/class_groups_controller')
+
+router.get('test', async () => {
+  return 'API is working ! '
+})
+
 router.resource('students', StudentsController).apiOnly()
+router.resource('teachers', TeachersController).apiOnly()
+router.resource('class-groups', ClassGroupsController).apiOnly()
