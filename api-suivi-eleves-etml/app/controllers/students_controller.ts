@@ -14,11 +14,10 @@ export default class StudentsController {
    * Display form to create a new record
    */
   async store({ request, response }: HttpContext) {
-    
     const { name, firstname } = await request.validateUsing(studentValidator)
-    
+
     const student = await Student.create({ name, firstname })
- 
+
     return response.created(student)
   }
 
@@ -37,7 +36,7 @@ export default class StudentsController {
   /**
    * Handle form submission for the edit action
    */
-  async update({ params, request, response }: HttpContext){
+  async update({ params, request, response }: HttpContext) {
     const data = request.only(['name', 'firstname'])
 
     const student = await Student.findOrFail(params.id)
@@ -47,7 +46,7 @@ export default class StudentsController {
     await student.save()
 
     response.ok(`l'utilisateur ${student.firstname} ${student.name} a bien été modifié`)
-    
+
     return student
   }
   /**
@@ -56,6 +55,6 @@ export default class StudentsController {
   async destroy({ params, response }: HttpContext) {
     const student = await Student.findOrFail(params.id)
     student.delete()
-    return response.ok(`l'utilisateur : ${ student.firstname } ${ student.name} a bien été supprimé` )
+    return response.ok(`l'utilisateur : ${student.firstname} ${student.name} a bien été supprimé`)
   }
 }

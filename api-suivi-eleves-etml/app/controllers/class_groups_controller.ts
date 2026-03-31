@@ -4,9 +4,7 @@ import { classGroupValidator } from '#validators/class_group'
 
 export default class ClassGroupsController {
   async index({}: HttpContext) {
-    const classGroups = await ClassGroup.query()
-      .preload('teacher')
-      .orderBy('name', 'asc')
+    const classGroups = await ClassGroup.query().preload('teacher').orderBy('name', 'asc')
 
     return classGroups
   }
