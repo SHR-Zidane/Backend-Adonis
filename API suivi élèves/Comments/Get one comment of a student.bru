@@ -5,9 +5,13 @@ meta {
 }
 
 get {
-  url: http://localhost:3333/students/2/comments/3
+  url: http://localhost:3333/students/5/comments/3
   body: none
-  auth: inherit
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{tokenE}}
 }
 
 settings {

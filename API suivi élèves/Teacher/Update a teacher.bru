@@ -5,16 +5,21 @@ meta {
 }
 
 put {
-  url: http://localhost:3333/teachers/1
+  url: http://localhost:3333/teachers/2
   body: json
-  auth: inherit
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{tokenE}}
 }
 
 body:json {
   {
-    "name": "Martin",
-    "firstname": "Claire",
-    "email": "claire.martin@example.com"
+    "name": "Köse",
+    "firstname": "Erdem Ökkes",
+    "email": "Kose.okkes@example.com",
+    "userId": 2
   }
 }
 

@@ -5,14 +5,18 @@ meta {
 }
 
 post {
-  url: http://localhost:3333/students/2/comments
+  url: http://localhost:3333/students/5/comments
   body: json
-  auth: inherit
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{tokenE}}
 }
 
 body:json {
   {
-    "content":"pas ouf"
+    "content":"zgeg à 100%"
   }
 }
 
