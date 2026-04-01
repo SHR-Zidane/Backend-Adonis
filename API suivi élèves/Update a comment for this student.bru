@@ -1,0 +1,22 @@
+meta {
+  name: Update a comment for this student
+  type: http
+  seq: 20
+}
+
+put {
+  url: http://localhost:3333/students/2/comments/3
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "content":"Peut mieux faire"
+  }
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

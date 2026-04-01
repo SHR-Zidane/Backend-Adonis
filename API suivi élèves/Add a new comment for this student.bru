@@ -1,19 +1,18 @@
 meta {
-  name: Add a new class group
+  name: Add a new comment for this student
   type: http
-  seq: 14
+  seq: 19
 }
 
 post {
-  url: http://localhost:3333/classGroups
+  url: http://localhost:3333/students/2/comments
   body: json
   auth: inherit
 }
 
 body:json {
   {
-    "name": "A4",
-    "teacherId": 1
+    "content":"pas ouf"
   }
 }
 
