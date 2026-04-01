@@ -8,8 +8,8 @@ export default class TeachersController {
   }
 
   async store({ request, response }: HttpContext) {
-    const data = await request.validateUsing(teacherValidator)
-    const teacher = await Teacher.create(data)
+    const { name, firstname, email, userId } = await request.validateUsing(teacherValidator)
+    const teacher = await Teacher.create({ name, firstname, email, userId })
 
     return response.created(teacher)
   }

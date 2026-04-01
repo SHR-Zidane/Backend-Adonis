@@ -1,11 +1,11 @@
 meta {
-  name: Get all students
+  name: Delete a student
   type: http
-  seq: 4
+  seq: 2
 }
 
-get {
-  url: http://localhost:3333/students/
+delete {
+  url: http://localhost:3333/students/1
   body: json
   auth: inherit
 }

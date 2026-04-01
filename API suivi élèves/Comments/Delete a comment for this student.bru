@@ -1,19 +1,13 @@
 meta {
-  name: Update a comment for this student
+  name: Delete a comment for this student
   type: http
-  seq: 20
+  seq: 18
 }
 
-put {
+delete {
   url: http://localhost:3333/students/2/comments/3
-  body: json
+  body: none
   auth: inherit
-}
-
-body:json {
-  {
-    "content":"Peut mieux faire"
-  }
 }
 
 settings {

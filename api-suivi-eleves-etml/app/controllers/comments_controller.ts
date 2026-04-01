@@ -19,16 +19,23 @@ export default class CommentsController {
   /**
    * Handle form submission for the create action
    */
-  async store({ params, request, response }: HttpContext) {
+  async store({ params, request, response, auth }: HttpContext) {
     const { content } = await request.validateUsing(commentValidator)
-
-    const teacherId = 1
-
+    // Récupération de l'utilisateur authentifié
+    const user = auth.user!
+    // Chargement de l'enseignant lié à cet utilisateur
+    const teacher = await user.related('teacher').query().first()
+    if (!teacher) {
+      return response.badRequest({ message: 'Teacher not found' })
+    }
+    const teacherId = teacher.id
+    // Création du commentaire lié à l'élève
     const comment = await Comment.create({
       content,
       studentId: params.student_id,
       teacherId,
     })
+    // Réponse HTTP 201 avec le commentaire
     return response.created(comment)
   }
 

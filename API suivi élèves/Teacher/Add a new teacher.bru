@@ -1,20 +1,20 @@
 meta {
-  name: Update a teacher
+  name: Add a new teacher
   type: http
-  seq: 10
+  seq: 3
 }
 
-put {
-  url: http://localhost:3333/teachers/1
+post {
+  url: http://localhost:3333/teachers
   body: json
   auth: inherit
 }
 
 body:json {
   {
-    "name": "Martin",
+    "name": "Dupont",
     "firstname": "Claire",
-    "email": "claire.martin@example.com"
+    "email": "claire.dupont@example.com"
   }
 }
 

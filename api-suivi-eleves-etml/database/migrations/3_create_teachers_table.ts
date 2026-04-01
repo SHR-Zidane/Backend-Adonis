@@ -12,10 +12,11 @@ export default class extends BaseSchema {
       table
         .integer('user_id')
         .unsigned()
-        .nullable()
         .references('id')
         .inTable('users')
-        .onDelete('SET NULL')
+        .onDelete('CASCADE')
+        .unique() // Un enseignant est lié à un seul utilisateur
+        .nullable()
       table.timestamp('created_at')
       table.timestamp('updated_at')
     })

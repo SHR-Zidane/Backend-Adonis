@@ -5,7 +5,10 @@ const teacherValidator = vine.compile(
     name: vine.string().minLength(2).maxLength(255),
     firstname: vine.string().minLength(2).maxLength(255),
     email: vine.string().email().maxLength(255),
-    userId: vine.number().positive().optional(),
+    userId: vine.number().exists(async (db, value) => {
+      const user = await db.from('users').where('id', value).first()
+      return !!user
+    }),
   })
 )
 

@@ -1,13 +1,20 @@
 meta {
-  name: Delete a class group
+  name: Update a class group
   type: http
-  seq: 16
+  seq: 2
 }
 
-delete {
+put {
   url: http://localhost:3333/class-groups/1
-  body: none
+  body: json
   auth: inherit
+}
+
+body:json {
+  {
+    "name": "B5",
+    "teacherId": 2
+  }
 }
 
 settings {
